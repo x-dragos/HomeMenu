@@ -40,4 +40,8 @@ class AddMenuItemFragment : Fragment() {
         val test = 1
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 }
