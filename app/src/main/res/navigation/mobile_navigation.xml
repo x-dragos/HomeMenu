@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home_menu">
+
+    <fragment
+        android:id="@+id/nav_home_menu"
+        android:name="ro.bcsolutions.homemenu.ui.home_menu.HomeMenuFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/home_menu_fragment"/>
+
+    <fragment
+        android:id="@+id/nav_stats"
+        android:name="ro.bcsolutions.homemenu.ui.stats.StatsFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/stats_fragment" />
+    <fragment
+        android:id="@+id/nav_edit_menu"
+        android:name="ro.bcsolutions.homemenu.ui.edit_menu.EditMenuFragment"
+        android:label="Edit Menu"
+        tools:layout="@layout/edit_menu_fragment" >
+        <action
+            android:id="@+id/action_nav_edit_menu_to_add_menu_item"
+            app:destination="@id/nav_add_menu_item" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_add_menu_item"
+        android:name="ro.bcsolutions.homemenu.ui.edit_menu.AddMenuItemFragment"
+        android:label="Add to Menu" />
+</navigation>
