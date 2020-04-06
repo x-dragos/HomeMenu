@@ -22,15 +22,10 @@ class EditMenuFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val binding: EditMenuFragmentBinding = DataBindingUtil.inflate(inflater,R.layout.edit_menu_fragment, container, false);
-        //val root = inflater.inflate(R.layout.edit_menu_fragment, container, false)
-        //val textView: TextView = root.findViewById(R.id.text_edit_menu)
-        /*viewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.textEditMenu.text = it
-        })*/
+        val binding: EditMenuFragmentBinding = DataBindingUtil.inflate(inflater,R.layout.edit_menu_fragment, container, false)
 
         binding.viewmodel = viewModel
-        binding.fabAddMenuItem.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_edit_menu_to_menu_item));
+        binding.fabAddMenuItem.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_edit_menu_to_menu_item))
 
         return binding.root
     }

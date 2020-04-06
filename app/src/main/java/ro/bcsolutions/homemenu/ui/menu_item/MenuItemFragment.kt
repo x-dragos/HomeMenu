@@ -24,10 +24,10 @@ class MenuItemFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.menu_item_fragment, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.menu_item_fragment, container, false)
         binding.menuDate.init(viewModel.menuDate.value!!.get(Calendar.YEAR), viewModel.menuDate.value!!.get(Calendar.MONTH), viewModel.menuDate.value!!.get(Calendar.DAY_OF_MONTH)) {
                 _: DatePicker?, year: Int, month: Int, day: Int ->
-            viewModel.setMenuDate(year,month,day);
+            viewModel.setMenuDate(year,month,day)
         }
         binding.menuDate.formatDate("dmy")
         binding.viewmodel = viewModel
@@ -35,7 +35,7 @@ class MenuItemFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        activity?.let { Utils.hideKeyboard(it) };
+        activity?.let { Utils.hideKeyboard(it) }
         super.onDestroy()
     }
 

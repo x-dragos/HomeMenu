@@ -10,5 +10,4 @@ class EditMenuViewModel : ViewModel() {
         value = "Edit Menu here!!!"
     }
     val text: LiveData<String> = _text
-    val text1: String = "BLA!"
 }

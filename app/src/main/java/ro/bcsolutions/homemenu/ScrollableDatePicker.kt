@@ -14,7 +14,7 @@ import android.widget.TextView
 
 
 class ScrollableDatePicker(context: Context, attrs: AttributeSet): DatePicker(context, attrs) {
-    private val SPINNER_COUNT = 3
+    private val spinnerCount = 3
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
         if (ev!!.actionMasked == MotionEvent.ACTION_DOWN) {
@@ -36,7 +36,7 @@ class ScrollableDatePicker(context: Context, attrs: AttributeSet): DatePicker(co
         val spinnerDay = findViewById<View>(idDay) as NumberPicker
         val layout = findViewById<View>(idLayout) as LinearLayout
         layout.removeAllViews()
-        for (i in 0 until SPINNER_COUNT) {
+        for (i in 0 until spinnerCount) {
             when (ymdOrder[i]) {
                 'y' -> {
                     layout.addView(spinnerYear)
@@ -56,7 +56,7 @@ class ScrollableDatePicker(context: Context, attrs: AttributeSet): DatePicker(co
     }
 
     private fun setImeOptions(spinner: NumberPicker, spinnerIndex: Int) {
-        val imeOptions: Int = if (spinnerIndex < SPINNER_COUNT - 1) {
+        val imeOptions: Int = if (spinnerIndex < spinnerCount - 1) {
             EditorInfo.IME_ACTION_NEXT
         } else {
             EditorInfo.IME_ACTION_DONE

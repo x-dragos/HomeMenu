@@ -1,13 +1,7 @@
 package ro.bcsolutions.homemenu
 
-import android.content.Context
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.Menu
-import android.view.MotionEvent
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
