@@ -1,20 +1,22 @@
 package ro.bcsolutions.homemenu.ui.menu_item
 
-import android.icu.text.DateFormat
-import android.icu.text.SimpleDateFormat
-import android.os.Build
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.*
 
 class MenuItemViewModel : ViewModel() {
-    /*
-    var date: String = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        SimpleDateFormat("dd.MM.yyyy").format(System.currentTimeMillis())
-    } else {
-        java.text.SimpleDateFormat("dd.MM.yyyy").format(System.currentTimeMillis()+100000000)
-    }*/
+    fun setMenuDate(year: Int, month: Int, day: Int) {
+        (_menuDate.value)?.set(year,month,day)
+    }
 
-    var menuDate: Calendar = Calendar.getInstance();
+    private val _menuDate = MutableLiveData<Calendar>()
 
-    // TODO: Implement the ViewModel
+    val menuDate: LiveData<Calendar>
+            get() = _menuDate
+
+    init {
+        _menuDate.value = Calendar.getInstance()
+        (_menuDate.value)?.set(2020,4,5)
+    }
 }
