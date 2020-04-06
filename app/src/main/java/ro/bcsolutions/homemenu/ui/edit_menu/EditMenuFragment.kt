@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import ro.bcsolutions.homemenu.R
 import ro.bcsolutions.homemenu.databinding.EditMenuFragmentBinding
@@ -32,7 +30,7 @@ class EditMenuFragment : Fragment() {
         })*/
 
         binding.viewmodel = viewModel
-        binding.fabAddMenuItem.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_edit_menu_to_add_menu_item));
+        binding.fabAddMenuItem.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_edit_menu_to_menu_item));
 
         return binding.root
     }

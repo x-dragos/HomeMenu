@@ -1,4 +1,4 @@
-package ro.bcsolutions.homemenu.ui.edit_menu
+package ro.bcsolutions.homemenu.ui.menu_item
 
 import android.icu.text.DateFormat
 import android.icu.text.SimpleDateFormat
@@ -6,7 +6,7 @@ import android.os.Build
 import androidx.lifecycle.ViewModel
 import java.util.*
 
-class AddMenuItemViewModel : ViewModel() {
+class MenuItemViewModel : ViewModel() {
     /*
     var date: String = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         SimpleDateFormat("dd.MM.yyyy").format(System.currentTimeMillis())
