@@ -1,5 +1,6 @@
 package ro.bcsolutions.homemenu.ui.menu_item
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,5 +19,10 @@ class MenuItemViewModel : ViewModel() {
     init {
         _menuDate.value = Calendar.getInstance()
         (_menuDate.value)?.set(2020,4,5)
+    }
+
+    fun saveMenuItem(pranz: String, cina: String)
+    {
+        Log.i("MenuItemViewModel", "PassedData: $pranz, $cina, $menuDate")
     }
 }

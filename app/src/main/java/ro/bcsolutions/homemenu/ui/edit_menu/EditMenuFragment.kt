@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import ro.bcsolutions.homemenu.R
 import ro.bcsolutions.homemenu.databinding.EditMenuFragmentBinding
 
 class EditMenuFragment : Fragment() {
 
-    private val viewModel: EditMenuViewModel by viewModels()
+    private lateinit var viewModel: EditMenuViewModel
 
     private lateinit var binding: EditMenuFragmentBinding
 
@@ -22,8 +23,8 @@ class EditMenuFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val binding: EditMenuFragmentBinding = DataBindingUtil.inflate(inflater,R.layout.edit_menu_fragment, container, false)
-
+        viewModel = ViewModelProvider(this).get(EditMenuViewModel::class.java)
+        binding = DataBindingUtil.inflate(inflater,R.layout.edit_menu_fragment, container, false)
         binding.viewmodel = viewModel
         binding.fabAddMenuItem.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_edit_menu_to_menu_item))
 

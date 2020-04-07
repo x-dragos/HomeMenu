@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import ro.bcsolutions.homemenu.R
 import ro.bcsolutions.homemenu.databinding.MenuItemFragmentBinding
@@ -17,8 +16,7 @@ import ro.bcsolutions.homemenu.Utils
 
 class MenuItemFragment : Fragment() {
 
-    private val viewModelFactory = MenuItemViewModelFactory()
-    private val viewModel: MenuItemViewModel = ViewModelProvider(this, viewModelFactory).get(MenuItemViewModel::class.java)
+    private lateinit var viewModel: MenuItemViewModel
 
     private lateinit var binding: MenuItemFragmentBinding
 
@@ -26,6 +24,7 @@ class MenuItemFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel = ViewModelProvider(this, MenuItemViewModelFactory()).get(MenuItemViewModel::class.java) //ViewModelProviders.of(this, viewModelFactory).get(MenuItemViewModel::class.java)//
         binding = DataBindingUtil.inflate(inflater, R.layout.menu_item_fragment, container, false)
         binding.menuDate.init(viewModel.menuDate.value!!.get(Calendar.YEAR), viewModel.menuDate.value!!.get(Calendar.MONTH), viewModel.menuDate.value!!.get(Calendar.DAY_OF_MONTH)) {
                 _: DatePicker?, year: Int, month: Int, day: Int ->
