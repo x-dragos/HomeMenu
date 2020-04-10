@@ -1,4 +1,4 @@
-package ro.bcsolutions.homemenu
+package ro.bcsolutions.homemenu.database
 
 import java.text.SimpleDateFormat
 import androidx.room.TypeConverter
@@ -12,18 +12,18 @@ class Converters {
         @TypeConverter
         @JvmStatic
         fun toCalendar(value: String?): Calendar? {
-            return value?.let {
-                val cal = Calendar.getInstance();
-                cal.time = formatter.parse(it)
-                return cal
-            }
+            if (value == null) return null
+            val cal = Calendar.getInstance()
+            cal.time = formatter.parse(value) ?: return null
+            return cal
         }
 
         @TypeConverter
         @JvmStatic
         fun fromCalendar(date: Calendar?): String? {
-            val dateCal = date!!.time
+            if (date == null) return null
 
+            val dateCal = date.time
             return formatter.format(dateCal)
         }
     }

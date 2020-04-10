@@ -1,4 +1,4 @@
-package ro.bcsolutions.homemenu
+package ro.bcsolutions.homemenu.database
 
 import androidx.room.*
 import java.util.*
@@ -8,9 +8,9 @@ data class MenuItem(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
     @ColumnInfo()
-    var date: Calendar? = null,
+    var date: Calendar,
     @ColumnInfo()
-    var pranz: String,
+    var lunch: String,
     @ColumnInfo()
-    var cina: String
+    var dinner: String
 )

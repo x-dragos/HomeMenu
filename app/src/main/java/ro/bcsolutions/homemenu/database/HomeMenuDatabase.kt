@@ -1,4 +1,4 @@
-package ro.bcsolutions.homemenu
+package ro.bcsolutions.homemenu.database
 
 import android.content.Context
 import androidx.room.Database
@@ -10,7 +10,7 @@ import androidx.room.TypeConverters
 @TypeConverters(Converters::class)
 abstract class HomeMenuDatabase : RoomDatabase() {
 
-    abstract val menuItemDatabaseDAO: MenuItemDAO
+    abstract val homeMenuItemDAO: MenuItemDAO
 
     companion object {
         @Volatile
@@ -18,9 +18,11 @@ abstract class HomeMenuDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): HomeMenuDatabase {
             synchronized(this) {
-                var instance = INSTANCE
+                var instance =
+                    INSTANCE
                 if (instance == null) {
-                    instance = Room.databaseBuilder(context.applicationContext,HomeMenuDatabase::class.java, "home_menu_database").fallbackToDestructiveMigration().build()
+                    instance = Room.databaseBuilder(context.applicationContext,
+                        HomeMenuDatabase::class.java, "home_menu_database").fallbackToDestructiveMigration().build()
                     INSTANCE = instance
                 }
                 return instance
