@@ -7,7 +7,8 @@ import java.util.*
 
 class Converters {
     companion object {
-        private val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ")
+        //"yyyy-MM-dd HH:mm:ss.SSSZ"
+        private val formatter = SimpleDateFormat("yyyy-MM-dd")
 
         @TypeConverter
         @JvmStatic

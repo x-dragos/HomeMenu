@@ -26,7 +26,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import ro.bcsolutions.homemenu.database.HomeMenuDatabase
 import ro.bcsolutions.homemenu.database.MenuItem
-import ro.bcsolutions.homemenu.database.MenuItemDAO
+import ro.bcsolutions.homemenu.database.HomeMenuItemDao
 import java.io.IOException
 import java.util.*
 
@@ -37,9 +37,9 @@ import java.util.*
  */
 
 @RunWith(AndroidJUnit4::class)
-class SleepDatabaseTest {
+class HomeMenuDatabaseTest {
 
-    private lateinit var homeMenuItemDAO: MenuItemDAO
+    private lateinit var homeMenuItemDao: HomeMenuItemDao
     private lateinit var db: HomeMenuDatabase
 
     @Before
@@ -51,7 +51,7 @@ class SleepDatabaseTest {
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        homeMenuItemDAO = db.homeMenuItemDAO
+        homeMenuItemDao = db.homeMenuItemDao
     }
 
     @After
@@ -68,10 +68,10 @@ class SleepDatabaseTest {
             lunch = "Supa",
             dinner = "Lava cake + Inghetata"
         )
-       val insered_id = homeMenuItemDAO.insert(menuItem)
-        val dbMenuItem = homeMenuItemDAO.get(insered_id)
-        assertEquals(dbMenuItem.id, insered_id)
-        assertEquals(dbMenuItem.lunch, "Supa")
-        assertEquals(dbMenuItem.dinner, "Lava cake + Inghetata")
+       val insered_id = homeMenuItemDao.insert(menuItem)
+        val dbMenuItem = homeMenuItemDao.get(insered_id)
+        assertEquals(dbMenuItem?.id, insered_id)
+        assertEquals(dbMenuItem?.lunch, "Supa")
+        assertEquals(dbMenuItem?.dinner, "Lava cake + Inghetata")
     }
 }

@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="viewmodel"
+            name="menuItemViewModel"
             type="ro.bcsolutions.homemenu.ui.menu_item.MenuItemViewModel" />
     </data>
 
@@ -48,6 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/text_pranz"
+                    android:text="@={menuItemViewModel.menuLunch}"
                     android:inputType="textCapSentences" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,11 +67,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/text_cina"
+                    android:text="@={menuItemViewModel.menuDinner}"
                     android:inputType="textCapSentences" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_save_menu_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

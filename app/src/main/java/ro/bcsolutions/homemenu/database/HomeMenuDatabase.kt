@@ -10,7 +10,7 @@ import androidx.room.TypeConverters
 @TypeConverters(Converters::class)
 abstract class HomeMenuDatabase : RoomDatabase() {
 
-    abstract val homeMenuItemDAO: MenuItemDAO
+    abstract val homeMenuItemDao: HomeMenuItemDao
 
     companion object {
         @Volatile

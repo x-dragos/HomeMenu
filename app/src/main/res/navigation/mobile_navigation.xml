@@ -28,5 +28,9 @@
     <fragment
         android:id="@+id/nav_menu_item"
         android:name="ro.bcsolutions.homemenu.ui.menu_item.MenuItemFragment"
-        android:label="Add to Menu" />
+        android:label="Add to Menu" >
+        <action
+            android:id="@+id/action_nav_menu_item_to_nav_edit_menu"
+            app:destination="@id/nav_edit_menu" />
+    </fragment>
 </navigation>

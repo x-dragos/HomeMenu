@@ -8,15 +8,18 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import ro.bcsolutions.homemenu.R
 import ro.bcsolutions.homemenu.databinding.MenuItemFragmentBinding
 import java.util.*
 import ro.bcsolutions.homemenu.Utils
+import ro.bcsolutions.homemenu.database.HomeMenuDatabase
 
 
 class MenuItemFragment : Fragment() {
 
-    private lateinit var viewModel: MenuItemViewModel
+    private lateinit var menuItemViewModel: MenuItemViewModel
 
     private lateinit var binding: MenuItemFragmentBinding
 
@@ -24,14 +27,30 @@ class MenuItemFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this, MenuItemViewModelFactory()).get(MenuItemViewModel::class.java) //ViewModelProviders.of(this, viewModelFactory).get(MenuItemViewModel::class.java)//
+        val application = requireNotNull(this.activity).application
+        val homeMenuItemDao = HomeMenuDatabase.getInstance(application).homeMenuItemDao
+        menuItemViewModel = ViewModelProvider(this, MenuItemViewModelFactory(homeMenuItemDao, application)).get(MenuItemViewModel::class.java)
+
         binding = DataBindingUtil.inflate(inflater, R.layout.menu_item_fragment, container, false)
-        binding.menuDate.init(viewModel.menuDate.value!!.get(Calendar.YEAR), viewModel.menuDate.value!!.get(Calendar.MONTH), viewModel.menuDate.value!!.get(Calendar.DAY_OF_MONTH)) {
-                _: DatePicker?, year: Int, month: Int, day: Int ->
-            viewModel.setMenuDate(year,month,day)
-        }
+
         binding.menuDate.formatDate("dmy")
-        binding.viewmodel = viewModel
+
+        binding.menuItemViewModel = menuItemViewModel
+
+        binding.lifecycleOwner = this
+
+        menuItemViewModel.menuDate.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            binding.menuDate.init(menuItemViewModel.menuDate.value!!.get(Calendar.YEAR), menuItemViewModel.menuDate.value!!.get(Calendar.MONTH), menuItemViewModel.menuDate.value!!.get(Calendar.DAY_OF_MONTH)) {
+                    _: DatePicker?, year: Int, month: Int, day: Int ->
+                menuItemViewModel.setMenuDate(year,month,day)
+            }
+        })
+
+        binding.buttonSaveMenuItem.setOnClickListener {
+            menuItemViewModel.saveMenuItem()
+            findNavController().navigate(R.id.action_nav_menu_item_to_nav_edit_menu)
+        }
+
         return binding.root
     }
 
