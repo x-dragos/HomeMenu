@@ -29,7 +29,7 @@ class MenuItemFragment : Fragment() {
     ): View? {
         val application = requireNotNull(this.activity).application
         val homeMenuItemDao = HomeMenuDatabase.getInstance(application).homeMenuItemDao
-        menuItemViewModel = ViewModelProvider(this, MenuItemViewModelFactory(homeMenuItemDao, application)).get(MenuItemViewModel::class.java)
+        menuItemViewModel = ViewModelProvider(this, MenuItemViewModelFactory(homeMenuItemDao)).get(MenuItemViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.menu_item_fragment, container, false)
 

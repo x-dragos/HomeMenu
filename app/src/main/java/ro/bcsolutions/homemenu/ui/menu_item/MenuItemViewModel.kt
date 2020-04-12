@@ -5,13 +5,14 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import ro.bcsolutions.homemenu.database.Converters
 import ro.bcsolutions.homemenu.database.HomeMenuItemDao
 import ro.bcsolutions.homemenu.database.MenuItem
 import java.util.*
 
-class MenuItemViewModel(val homeMenuItemDao: HomeMenuItemDao, application: Application) : AndroidViewModel(application) {
+class MenuItemViewModel(val homeMenuItemDao: HomeMenuItemDao) : ViewModel() {
 
     private val _menuDate = MutableLiveData<Calendar>()
 
