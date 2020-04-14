@@ -11,14 +11,15 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/edit_menu_items_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.edit_menu.EditMenuFragment">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/edit_menu_items_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_menu_item"

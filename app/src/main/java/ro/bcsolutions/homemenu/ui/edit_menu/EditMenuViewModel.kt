@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ro.bcsolutions.homemenu.database.HomeMenuItemDao
+import ro.bcsolutions.homemenu.database.MenuItem
 
 class EditMenuViewModel(homeMenuItemDao: HomeMenuItemDao) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "Edit Menu here!!!"
-    }
-    val text: LiveData<String> = _text
+    val menuItems: LiveData<List<MenuItem>?> = homeMenuItemDao.getAll()
+
 }

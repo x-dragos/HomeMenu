@@ -29,7 +29,12 @@ class MenuItemFragment : Fragment() {
     ): View? {
         val application = requireNotNull(this.activity).application
         val homeMenuItemDao = HomeMenuDatabase.getInstance(application).homeMenuItemDao
-        menuItemViewModel = ViewModelProvider(this, MenuItemViewModelFactory(homeMenuItemDao)).get(MenuItemViewModel::class.java)
+
+        val args = arguments?.let { MenuItemFragmentArgs.fromBundle(it) }
+
+        menuItemViewModel = ViewModelProvider(this, MenuItemViewModelFactory(homeMenuItemDao, args?.menuItemId ?: 0L)).get(MenuItemViewModel::class.java)
+
+
 
         binding = DataBindingUtil.inflate(inflater, R.layout.menu_item_fragment, container, false)
 
@@ -47,6 +52,7 @@ class MenuItemFragment : Fragment() {
         })
 
         binding.buttonSaveMenuItem.setOnClickListener {
+            Utils.hideKeyboard(this.requireActivity())
             menuItemViewModel.saveMenuItem()
             findNavController().navigate(R.id.action_nav_menu_item_to_nav_edit_menu)
         }
@@ -55,8 +61,8 @@ class MenuItemFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        activity?.let { Utils.hideKeyboard(it) }
         super.onDestroy()
+        activity?.let { Utils.hideKeyboard(it) }
     }
 
 }

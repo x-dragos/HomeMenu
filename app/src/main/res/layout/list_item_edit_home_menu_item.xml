@@ -9,9 +9,9 @@
         android:id="@+id/menu_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:textSize="24sp"
+        android:textSize="@dimen/large_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="14 April" />
@@ -20,22 +20,22 @@
         android:id="@+id/text_lunch_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:textSize="12sp"
+        android:text="@string/text_lunch_title"
+        android:textSize="@dimen/medium_text"
         app:layout_constraintStart_toEndOf="@id/menu_date"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/text_lunch_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_dinner_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textSize="12sp"
+        android:layout_marginStart="16dp"
+        android:text="@string/text_dinner_title"
+        android:textSize="@dimen/medium_text"
         app:layout_constraintStart_toEndOf="@id/menu_date"
-        app:layout_constraintTop_toBottomOf="@id/text_lunch_title"
-        tools:text="@string/text_dinner_title" />
+        app:layout_constraintTop_toBottomOf="@id/text_lunch_title" />
 
     <TextView
         android:id="@+id/lunch_menu_item"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textSize="12sp"
+        android:textSize="@dimen/medium_text"
         app:layout_constraintStart_toEndOf="@id/text_lunch_title"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Shaorma cu de toate" />
@@ -52,18 +52,22 @@
         android:id="@+id/dinner_menu_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:textSize="@dimen/medium_text"
         app:layout_constraintStart_toStartOf="@id/lunch_menu_item"
         app:layout_constraintTop_toBottomOf="@id/lunch_menu_item"
         tools:text="Rabdari prajite"/>
 
     <Button
         android:id="@+id/button_edit_menu_item"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="edit"
+        android:background="@color/design_default_color_secondary"
+        android:text="@string/button_edit_text"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/medium_text"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/menu_date" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

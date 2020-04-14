@@ -10,7 +10,7 @@ data class MenuItem(
     @ColumnInfo()
     var date: Calendar,
     @ColumnInfo()
-    var lunch: String,
+    var lunch: String?,
     @ColumnInfo()
-    var dinner: String
+    var dinner: String?
 )

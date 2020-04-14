@@ -23,9 +23,7 @@ class Converters {
         @JvmStatic
         fun fromCalendar(date: Calendar?): String? {
             if (date == null) return null
-
-            val dateCal = date.time
-            return formatter.format(dateCal)
+            return formatter.format(date.time)
         }
     }
 }

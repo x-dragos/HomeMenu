@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "40e25c9a7493416825f28a7276ee1645",
+    "identityHash": "9da38363be857f3f2d6c8915bb64e0c2",
     "entities": [
       {
         "tableName": "menu_items_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT NOT NULL, `lunch` TEXT NOT NULL, `dinner` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT NOT NULL, `lunch` TEXT, `dinner` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -24,13 +24,13 @@
             "fieldPath": "lunch",
             "columnName": "lunch",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "dinner",
             "columnName": "dinner",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -46,7 +46,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '40e25c9a7493416825f28a7276ee1645')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9da38363be857f3f2d6c8915bb64e0c2')"
     ]
   }
 }
