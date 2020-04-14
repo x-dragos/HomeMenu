@@ -15,4 +15,6 @@
     <string name="text_pranz">Pranz</string>
     <string name="text_cina">Cina</string>
     <string name="text_button_save">Save</string>
+    <string name="text_lunch_title">Pranz:</string>
+    <string name="text_dinner_title">Cina:</string>
 </resources>
