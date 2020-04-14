@@ -1,5 +1,6 @@
 package ro.bcsolutions.homemenu.ui.menu_item
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,13 +9,13 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import ro.bcsolutions.homemenu.R
 import ro.bcsolutions.homemenu.databinding.MenuItemFragmentBinding
 import java.util.*
 import ro.bcsolutions.homemenu.Utils
 import ro.bcsolutions.homemenu.database.HomeMenuDatabase
+import java.time.format.DateTimeFormatter
 
 
 class MenuItemFragment : Fragment() {
@@ -38,7 +39,10 @@ class MenuItemFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.menu_item_fragment, container, false)
 
-        binding.menuDate.formatDate("dmy")
+       if (Build.VERSION.SDK_INT < 22) {
+           binding.menuDate.formatDate("dmy")
+        }
+
 
         binding.menuItemViewModel = menuItemViewModel
 

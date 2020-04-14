@@ -3,10 +3,10 @@ package ro.bcsolutions.homemenu.ui.menu_item
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ro.bcsolutions.homemenu.R
 import ro.bcsolutions.homemenu.database.MenuItem
 import ro.bcsolutions.homemenu.ui.edit_menu.EditMenuFragmentDirections
@@ -34,15 +34,16 @@ class MenuItemRecyclerViewAdapter: RecyclerView.Adapter<MenuItemRecyclerViewAdap
         val item = data[position]
         holder.lunch.text = item.lunch
         holder.dinner.text = item.dinner
-        val formatter = SimpleDateFormat("dd-MMM")
-        holder.date.text = formatter.format(item.date.time)
+        holder.dateDay.text = item.date.get(Calendar.DAY_OF_MONTH).toString()
+        holder.dateMonth.text = SimpleDateFormat("MMM").format(item.date.time)
         holder.button.setOnClickListener(Navigation.createNavigateOnClickListener(EditMenuFragmentDirections.actionNavEditMenuToMenuItem(item.id)))
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val date: TextView = itemView.findViewById(R.id.menu_date)
+        val dateDay: TextView = itemView.findViewById(R.id.menu_date_day)
+        val dateMonth: TextView = itemView.findViewById(R.id.menu_date_month)
         val lunch: TextView = itemView.findViewById(R.id.lunch_menu_item)
         val dinner: TextView = itemView.findViewById(R.id.dinner_menu_item)
-        val button: Button = itemView.findViewById(R.id.button_edit_menu_item)
+        val button: FloatingActionButton = itemView.findViewById(R.id.button_edit_menu_item)
     }
 }

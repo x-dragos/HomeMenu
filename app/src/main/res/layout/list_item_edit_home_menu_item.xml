@@ -6,46 +6,58 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/menu_date"
+        android:id="@+id/menu_date_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:textSize="@dimen/large_text"
+        app:layout_constraintEnd_toEndOf="@+id/menu_date_month"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="14 April" />
+        tools:text="14" />
+
+    <TextView
+        android:id="@+id/menu_date_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="@dimen/large_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_date_day"
+        tools:text="Apr" />
 
     <TextView
         android:id="@+id/text_lunch_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:text="@string/text_lunch_title"
         android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toEndOf="@id/menu_date"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/menu_date_day"
+        app:layout_constraintStart_toStartOf="@+id/text_dinner_title"
+        app:layout_constraintTop_toTopOf="@+id/menu_date_day" />
 
     <TextView
         android:id="@+id/text_dinner_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="@string/text_dinner_title"
         android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toEndOf="@id/menu_date"
-        app:layout_constraintTop_toBottomOf="@id/text_lunch_title" />
+        app:layout_constraintTop_toTopOf="@id/menu_date_month"
+        app:layout_constraintBottom_toBottomOf="@id/menu_date_month"
+        app:layout_constraintStart_toEndOf="@+id/menu_date_month"
+        app:layout_constraintTop_toBottomOf="@+id/menu_date_day" />
 
     <TextView
         android:id="@+id/lunch_menu_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:maxWidth="220dp"
         android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toEndOf="@id/text_lunch_title"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_lunch_title"
+        app:layout_constraintTop_toTopOf="@+id/text_lunch_title"
         tools:text="Shaorma cu de toate" />
 
     <TextView
@@ -53,21 +65,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toStartOf="@id/lunch_menu_item"
-        app:layout_constraintTop_toBottomOf="@id/lunch_menu_item"
-        tools:text="Rabdari prajite"/>
+        app:layout_constraintBottom_toBottomOf="@+id/text_dinner_title"
+        app:layout_constraintStart_toStartOf="@+id/lunch_menu_item"
+        app:layout_constraintTop_toTopOf="@+id/text_dinner_title"
+        tools:text="Rabdari prajite" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_edit_menu_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:background="@color/design_default_color_secondary"
-        android:text="@string/button_edit_text"
+        android:src="@android:drawable/ic_menu_edit"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/medium_text"
-        app:layout_constraintBottom_toBottomOf="@+id/menu_date"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_date_month"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/menu_date" />
+        app:layout_constraintTop_toTopOf="@+id/menu_date_day" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
