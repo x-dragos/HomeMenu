@@ -22,8 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
         android:textSize="@dimen/large_text"
-        app:layout_constraintStart_toEndOf="@+id/button_edit_menu_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu_date_day"
         tools:text="Apr" />
 
@@ -69,5 +71,10 @@
         app:layout_constraintStart_toStartOf="@+id/lunch_menu_item"
         app:layout_constraintTop_toTopOf="@+id/text_dinner_title"
         tools:text="Rabdari prajite" />
+
+    <View
+        style="@style/Divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

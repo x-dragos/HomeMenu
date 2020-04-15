@@ -37,9 +37,7 @@ class EditMenuFragment : Fragment() {
         val adapter = MenuItemRecyclerViewAdapter()
         binding.editMenuItemsList.adapter = adapter
         editMenuViewModel.menuItems.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.data = it
-            }
+            adapter.submitList(it)
         })
 
         return binding.root
