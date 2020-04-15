@@ -2,16 +2,16 @@ package ro.bcsolutions.homemenu.ui.menu_item
 
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.BindingAdapter
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ro.bcsolutions.homemenu.R
 import ro.bcsolutions.homemenu.database.MenuItem
+import ro.bcsolutions.homemenu.databinding.ListItemEditMenuItemBinding
 import ro.bcsolutions.homemenu.ui.edit_menu.EditMenuFragmentDirections
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,44 +29,41 @@ class MenuItemRecyclerViewAdapter: ListAdapter<MenuItem, MenuItemRecyclerViewAda
         holder.bind(item)
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val date: TextView = itemView.findViewById(R.id.menu_date)
-        val lunch: TextView = itemView.findViewById(R.id.lunch_menu_item)
-        val dinner: TextView = itemView.findViewById(R.id.dinner_menu_item)
-        val layout: ConstraintLayout = itemView.findViewById(R.id.list_item_edit_home_menu_item_row)
+    class ViewHolder private constructor(val binding: ListItemEditMenuItemBinding): RecyclerView.ViewHolder(binding.root){
 
         private val today = Calendar.getInstance()
-        private val today_day = today.get(Calendar.DAY_OF_MONTH)
-        private val today_month = today.get(Calendar.MONTH)
-        private val today_year = today.get(Calendar.YEAR)
+        private val todayDay = today.get(Calendar.DAY_OF_MONTH)
+        private val todayMonth = today.get(Calendar.MONTH)
+        private val todayYear = today.get(Calendar.YEAR)
 
         fun bind(
             item: MenuItem
         ) {
-            lunch.text = item.lunch
-            dinner.text = item.dinner
-            date.text = SimpleDateFormat("dd-MMMM").format(item.date.time)
-            layout.setOnClickListener(
+            binding.menuItem = item
+            binding.executePendingBindings()
+
+            binding.listItemEditHomeMenuItemRow.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
                     EditMenuFragmentDirections.actionNavEditMenuToMenuItem(item.id)
                 )
             )
-            if (item.date.get(Calendar.DAY_OF_MONTH) == today_day && item.date.get(Calendar.MONTH) == today_month && item.date.get(
+            if (item.date.get(Calendar.DAY_OF_MONTH) == todayDay && item.date.get(Calendar.MONTH) == todayMonth && item.date.get(
                     Calendar.YEAR
-                ) == today_year
+                ) == todayYear
             ) {
-                layout.setBackgroundColor(Color.parseColor("#A7FFEB"))
+                binding.listItemEditHomeMenuItemRow.setBackgroundColor(Color.parseColor("#A7FFEB"))
             } else {
-                layout.setBackgroundColor(Color.WHITE)
-                //date.setTextColor(Color.parseColor("#808080"))
+                binding.listItemEditHomeMenuItemRow.setBackgroundColor(Color.WHITE)
             }
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ListItemEditMenuItemBinding.inflate(layoutInflater, parent, false)
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.list_item_edit_menu_item, parent, false)
-                return ViewHolder(view)
+                return ViewHolder(binding)
             }
         }
 
@@ -81,5 +78,12 @@ class MenuItemRecyclerViewAdapter: ListAdapter<MenuItem, MenuItemRecyclerViewAda
             return oldItem == newItem
         }
 
+    }
+}
+
+@BindingAdapter("shortFormatDateString")
+fun TextView.setShortFormatDateString(item: MenuItem) {
+    item?.let {
+        text = SimpleDateFormat("dd-MMMM").format(item.date.time)
     }
 }

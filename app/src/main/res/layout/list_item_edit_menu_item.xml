@@ -1,69 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/list_item_edit_home_menu_item_row"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/menu_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="14-April" />
+    <data>
+        <variable
+            name="menuItem"
+            type="ro.bcsolutions.homemenu.database.MenuItem" />
+    </data>
 
-    <TextView
-        android:id="@+id/text_lunch_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/text_lunch_title"
-        android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_date" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list_item_edit_home_menu_item_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/text_dinner_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/text_dinner_title"
-        android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/dinner_menu_item" />
+        <TextView
+            android:id="@+id/menu_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="14-April"
+            app:shortFormatDateString="@{menuItem}"/>
 
-    <TextView
-        android:id="@+id/lunch_menu_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:maxWidth="220dp"
-        android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toEndOf="@+id/text_lunch_title"
-        app:layout_constraintTop_toTopOf="@+id/text_lunch_title"
-        tools:text="Shaorma cu de toate" />
+        <TextView
+            android:id="@+id/text_lunch_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_lunch_title"
+            android:textSize="@dimen/medium_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menu_date" />
 
-    <TextView
-        android:id="@+id/dinner_menu_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toStartOf="@+id/lunch_menu_item"
-        app:layout_constraintTop_toBottomOf="@+id/lunch_menu_item"
-        tools:text="Rabdari prajite" />
+        <TextView
+            android:id="@+id/text_dinner_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/text_dinner_title"
+            android:textSize="@dimen/medium_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dinner_menu_item" />
 
-    <View
-        style="@style/Divider"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dinner_menu_item" />
+        <TextView
+            android:id="@+id/lunch_menu_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:maxWidth="220dp"
+            android:textSize="@dimen/medium_text"
+            app:layout_constraintStart_toEndOf="@+id/text_lunch_title"
+            app:layout_constraintTop_toTopOf="@+id/text_lunch_title"
+            tools:text="Shaorma cu de toate"
+            android:text="@{menuItem.lunch}"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/dinner_menu_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/medium_text"
+            app:layout_constraintStart_toStartOf="@+id/lunch_menu_item"
+            app:layout_constraintTop_toBottomOf="@+id/lunch_menu_item"
+            tools:text="Rabdari prajite"
+            android:text="@{menuItem.dinner}"/>
+
+        <View
+            style="@style/Divider"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dinner_menu_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
