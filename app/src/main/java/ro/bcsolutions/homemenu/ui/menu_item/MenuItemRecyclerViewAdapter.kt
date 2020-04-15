@@ -30,8 +30,7 @@ class MenuItemRecyclerViewAdapter: ListAdapter<MenuItem, MenuItemRecyclerViewAda
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val dateDay: TextView = itemView.findViewById(R.id.menu_date_day)
-        val dateMonth: TextView = itemView.findViewById(R.id.menu_date_month)
+        val date: TextView = itemView.findViewById(R.id.menu_date)
         val lunch: TextView = itemView.findViewById(R.id.lunch_menu_item)
         val dinner: TextView = itemView.findViewById(R.id.dinner_menu_item)
         val layout: ConstraintLayout = itemView.findViewById(R.id.list_item_edit_home_menu_item_row)
@@ -46,8 +45,7 @@ class MenuItemRecyclerViewAdapter: ListAdapter<MenuItem, MenuItemRecyclerViewAda
         ) {
             lunch.text = item.lunch
             dinner.text = item.dinner
-            dateDay.text = item.date.get(Calendar.DAY_OF_MONTH).toString()
-            dateMonth.text = SimpleDateFormat("MMM").format(item.date.time)
+            date.text = SimpleDateFormat("dd-MMMM").format(item.date.time)
             layout.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
                     EditMenuFragmentDirections.actionNavEditMenuToMenuItem(item.id)
@@ -57,18 +55,17 @@ class MenuItemRecyclerViewAdapter: ListAdapter<MenuItem, MenuItemRecyclerViewAda
                     Calendar.YEAR
                 ) == today_year
             ) {
-                dateDay.setTextColor(Color.GREEN)
-                dateMonth.setTextColor(Color.GREEN)
+                layout.setBackgroundColor(Color.parseColor("#A7FFEB"))
             } else {
-                dateDay.setTextColor(Color.parseColor("#808080"))
-                dateMonth.setTextColor(Color.parseColor("#808080"))
+                layout.setBackgroundColor(Color.WHITE)
+                //date.setTextColor(Color.parseColor("#808080"))
             }
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.list_item_edit_home_menu_item, parent, false)
+                    .inflate(R.layout.list_item_edit_menu_item, parent, false)
                 return ViewHolder(view)
             }
         }

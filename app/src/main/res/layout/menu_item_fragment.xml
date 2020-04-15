@@ -48,7 +48,13 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/text_pranz"
                     android:text="@={menuItemViewModel.menuLunch}"
-                    android:inputType="textCapSentences" />
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:lines="2"
+                    android:minLines="1"
+                    android:maxLines="4"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -67,7 +73,13 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/text_cina"
                     android:text="@={menuItemViewModel.menuDinner}"
-                    android:inputType="textCapSentences" />
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:lines="2"
+                    android:minLines="1"
+                    android:maxLines="4"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

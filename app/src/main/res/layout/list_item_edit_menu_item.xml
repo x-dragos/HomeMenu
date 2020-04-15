@@ -7,37 +7,26 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/menu_date_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/large_text"
-        app:layout_constraintEnd_toEndOf="@+id/menu_date_month"
-        app:layout_constraintStart_toStartOf="@+id/menu_date_month"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="14" />
-
-    <TextView
-        android:id="@+id/menu_date_month"
+        android:id="@+id/menu_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="@dimen/large_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_date_day"
-        tools:text="Apr" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="14-April" />
 
     <TextView
         android:id="@+id/text_lunch_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/text_lunch_title"
         android:textSize="@dimen/medium_text"
-        app:layout_constraintBottom_toBottomOf="@+id/menu_date_day"
-        app:layout_constraintStart_toStartOf="@+id/text_dinner_title"
-        app:layout_constraintTop_toTopOf="@+id/menu_date_day" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_date" />
 
     <TextView
         android:id="@+id/text_dinner_title"
@@ -46,10 +35,8 @@
         android:layout_marginStart="8dp"
         android:text="@string/text_dinner_title"
         android:textSize="@dimen/medium_text"
-        app:layout_constraintTop_toTopOf="@id/menu_date_month"
-        app:layout_constraintBottom_toBottomOf="@id/menu_date_month"
-        app:layout_constraintStart_toEndOf="@+id/menu_date_month"
-        app:layout_constraintTop_toBottomOf="@+id/menu_date_day" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/dinner_menu_item" />
 
     <TextView
         android:id="@+id/lunch_menu_item"
@@ -66,15 +53,17 @@
         android:id="@+id/dinner_menu_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textSize="@dimen/medium_text"
-        app:layout_constraintBottom_toBottomOf="@+id/text_dinner_title"
         app:layout_constraintStart_toStartOf="@+id/lunch_menu_item"
-        app:layout_constraintTop_toTopOf="@+id/text_dinner_title"
+        app:layout_constraintTop_toBottomOf="@+id/lunch_menu_item"
         tools:text="Rabdari prajite" />
 
     <View
         style="@style/Divider"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dinner_menu_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

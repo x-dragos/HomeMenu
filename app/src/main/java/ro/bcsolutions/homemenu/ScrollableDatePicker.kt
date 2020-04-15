@@ -3,6 +3,7 @@ package ro.bcsolutions.homemenu
 import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
+import android.os.Build
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -17,10 +18,11 @@ class ScrollableDatePicker(context: Context, attrs: AttributeSet): DatePicker(co
     private val spinnerCount = 3
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        if (ev!!.actionMasked == MotionEvent.ACTION_DOWN) {
+        Utils.hideKeyboard(context as Activity)
+
+        if (ev!!.actionMasked == MotionEvent.ACTION_DOWN && Build.VERSION.SDK_INT < 22) {
             val p = parent
             p?.requestDisallowInterceptTouchEvent(true)
-            Utils.hideKeyboard(context as Activity)
         }
         return false
     }
