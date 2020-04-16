@@ -8,14 +8,14 @@
     <fragment
         android:id="@+id/nav_home_menu"
         android:name="ro.bcsolutions.homemenu.ui.home_menu.HomeMenuFragment"
-        android:label="@string/menu_home"
+        android:label="@string/menu_home_menu"
         tools:layout="@layout/home_menu_fragment"/>
 
     <fragment
-        android:id="@+id/nav_stats"
-        android:name="ro.bcsolutions.homemenu.ui.stats.StatsFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/stats_fragment" />
+        android:id="@+id/nav_notes"
+        android:name="ro.bcsolutions.homemenu.ui.notes.NotesFragment"
+        android:label="@string/menu_notes"
+        tools:layout="@layout/notes_fragment" />
     <fragment
         android:id="@+id/nav_edit_menu"
         android:name="ro.bcsolutions.homemenu.ui.edit_menu.EditMenuFragment"

@@ -15,6 +15,7 @@ import java.util.*
 class MenuItemRecyclerViewAdapter(private val type: HomeMenuListType, private val clickListener: MenuItemClickListener): ListAdapter<MenuItem, MenuItemRecyclerViewAdapter.ViewHolder>(
     MenuItemListDiffCallback()
 ) {
+    var todayIndex: Int? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent, type)
@@ -24,6 +25,19 @@ class MenuItemRecyclerViewAdapter(private val type: HomeMenuListType, private va
         holder.bind(clickListener, getItem(position))
     }
 
+    override fun onCurrentListChanged(
+        previousList: MutableList<MenuItem>,
+        currentList: MutableList<MenuItem>
+    ) {
+        super.onCurrentListChanged(previousList, currentList)
+        val today = Calendar.getInstance()
+        today.set(Calendar.HOUR_OF_DAY,0)
+        today.set(Calendar.MINUTE,0)
+        today.set(Calendar.SECOND,0)
+        today.set(Calendar.MILLISECOND,0)
+        val todayMenu = currentList.find { it.date.time == today.time }
+        todayIndex = currentList.indexOf(todayMenu)
+    }
     class ViewHolder private constructor(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root){
 
         private val today = Calendar.getInstance()

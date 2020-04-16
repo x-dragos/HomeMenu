@@ -54,29 +54,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:maxWidth="220dp"
+            android:text="@{menuItem.lunch}"
             android:textSize="@dimen/medium_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/text_lunch_title"
             app:layout_constraintTop_toTopOf="@+id/text_lunch_title"
-            tools:text="Shaorma cu de toate"
-            android:text="@{menuItem.lunch}"/>
+            tools:text="Shaorma cu de toate" />
 
         <TextView
             android:id="@+id/dinner_menu_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{menuItem.dinner}"
             android:textSize="@dimen/medium_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/lunch_menu_item"
             app:layout_constraintTop_toBottomOf="@+id/lunch_menu_item"
-            tools:text="Rabdari prajite"
-            android:text="@{menuItem.dinner}"/>
+            tools:text="Rabdari prajite" />
 
         <ImageView
             android:id="@+id/calendar_icon"
             android:layout_width="97dp"
             android:layout_height="86dp"
-            android:layout_marginStart="8dp"
             android:contentDescription="@string/content_description_calendar_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
