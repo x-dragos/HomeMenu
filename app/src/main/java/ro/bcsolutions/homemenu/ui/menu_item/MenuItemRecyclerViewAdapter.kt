@@ -3,33 +3,28 @@ package ro.bcsolutions.homemenu.ui.menu_item
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.databinding.BindingAdapter
-import androidx.navigation.Navigation
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import ro.bcsolutions.homemenu.R
 import ro.bcsolutions.homemenu.database.MenuItem
 import ro.bcsolutions.homemenu.databinding.ListItemEditMenuItemBinding
-import ro.bcsolutions.homemenu.ui.edit_menu.EditMenuFragmentDirections
-import java.text.SimpleDateFormat
+import ro.bcsolutions.homemenu.databinding.ListItemHomeMenuItemBinding
 import java.util.*
 
-class MenuItemRecyclerViewAdapter: ListAdapter<MenuItem, MenuItemRecyclerViewAdapter.ViewHolder>(
+class MenuItemRecyclerViewAdapter(private val type: HomeMenuListType, private val clickListener: MenuItemClickListener): ListAdapter<MenuItem, MenuItemRecyclerViewAdapter.ViewHolder>(
     MenuItemListDiffCallback()
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+        return ViewHolder.from(parent, type)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+        holder.bind(clickListener, getItem(position))
     }
 
-    class ViewHolder private constructor(val binding: ListItemEditMenuItemBinding): RecyclerView.ViewHolder(binding.root){
+    class ViewHolder private constructor(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root){
 
         private val today = Calendar.getInstance()
         private val todayDay = today.get(Calendar.DAY_OF_MONTH)
@@ -37,36 +32,53 @@ class MenuItemRecyclerViewAdapter: ListAdapter<MenuItem, MenuItemRecyclerViewAda
         private val todayYear = today.get(Calendar.YEAR)
 
         fun bind(
+            clickListener: MenuItemClickListener,
             item: MenuItem
         ) {
-            binding.menuItem = item
-            binding.executePendingBindings()
+            when (binding) {
+                is ListItemEditMenuItemBinding -> {
+                    binding.menuItem = item
+                    binding.executePendingBindings()
 
-            binding.listItemEditHomeMenuItemRow.setOnClickListener(
-                Navigation.createNavigateOnClickListener(
-                    EditMenuFragmentDirections.actionNavEditMenuToMenuItem(item.id)
-                )
-            )
-            if (item.date.get(Calendar.DAY_OF_MONTH) == todayDay && item.date.get(Calendar.MONTH) == todayMonth && item.date.get(
-                    Calendar.YEAR
-                ) == todayYear
-            ) {
-                binding.listItemEditHomeMenuItemRow.setBackgroundColor(Color.parseColor("#A7FFEB"))
-            } else {
-                binding.listItemEditHomeMenuItemRow.setBackgroundColor(Color.WHITE)
+                    binding.menuItemClickListener = clickListener
+
+                    if (item.date.get(Calendar.DAY_OF_MONTH) == todayDay && item.date.get(Calendar.MONTH) == todayMonth && item.date.get(
+                            Calendar.YEAR
+                        ) == todayYear
+                    ) {
+                        binding.listItemEditMenuItemRow.setBackgroundColor(Color.parseColor("#A7FFEB"))
+                    } else {
+                        binding.listItemEditMenuItemRow.setBackgroundColor(Color.WHITE)
+                    }
+                }
+                is ListItemHomeMenuItemBinding -> {
+                    binding.menuItem = item
+                    binding.executePendingBindings()
+
+                    binding.menuItemClickListener = clickListener
+
+                    if (item.date.get(Calendar.DAY_OF_MONTH) == todayDay && item.date.get(Calendar.MONTH) == todayMonth && item.date.get(
+                            Calendar.YEAR
+                        ) == todayYear
+                    ) {
+                        binding.listItemHomeMenuItemRow.setBackgroundColor(Color.parseColor("#A7FFEB"))
+                    } else {
+                        binding.listItemHomeMenuItemRow.setBackgroundColor(Color.WHITE)
+                    }
+                }
             }
         }
 
         companion object {
-            fun from(parent: ViewGroup): ViewHolder {
+            fun from(parent: ViewGroup, type: HomeMenuListType): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListItemEditMenuItemBinding.inflate(layoutInflater, parent, false)
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.list_item_edit_menu_item, parent, false)
+                val binding = when (type) {
+                    HomeMenuListType.HOME -> ListItemHomeMenuItemBinding.inflate(layoutInflater, parent, false)
+                    HomeMenuListType.EDIT -> ListItemEditMenuItemBinding.inflate(layoutInflater, parent, false)
+                }
                 return ViewHolder(binding)
             }
         }
-
     }
 
     class MenuItemListDiffCallback : DiffUtil.ItemCallback<MenuItem>() {
@@ -77,13 +89,13 @@ class MenuItemRecyclerViewAdapter: ListAdapter<MenuItem, MenuItemRecyclerViewAda
         override fun areContentsTheSame(oldItem: MenuItem, newItem: MenuItem): Boolean {
             return oldItem == newItem
         }
-
     }
-}
 
-@BindingAdapter("shortFormatDateString")
-fun TextView.setShortFormatDateString(item: MenuItem) {
-    item?.let {
-        text = SimpleDateFormat("dd-MMMM").format(item.date.time)
+    class MenuItemClickListener(private val callback: (menuItemId: Long) -> Unit) {
+        fun onClick(menuItem: MenuItem) = callback(menuItem.id)
+    }
+
+    enum class HomeMenuListType {
+        EDIT, HOME
     }
 }

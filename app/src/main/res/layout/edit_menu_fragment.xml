@@ -19,7 +19,8 @@
             android:id="@+id/edit_menu_items_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:stackFromEnd="true"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_menu_item"
@@ -29,6 +30,7 @@
             android:layout_marginBottom="@dimen/fab_margin"
             android:clickable="true"
             android:focusable="true"
+            android:onClick="@{()->editMenuViewModel.onFabAddMenuItemClicked()}"
             android:src="@android:drawable/ic_input_add"
             android:tint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"

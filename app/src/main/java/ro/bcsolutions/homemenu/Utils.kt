@@ -3,6 +3,7 @@ package ro.bcsolutions.homemenu
 import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import android.widget.ScrollView
 
 class Utils {
     companion object Utils {
@@ -19,4 +20,11 @@ class Utils {
             }
         }
     }
+}
+
+fun ScrollView.scrollToBottom() {
+    val lastChild = getChildAt(childCount - 1)
+    val bottom = lastChild.bottom + paddingBottom
+    val delta = bottom - (scrollY+ height)
+    smoothScrollBy(0, delta)
 }

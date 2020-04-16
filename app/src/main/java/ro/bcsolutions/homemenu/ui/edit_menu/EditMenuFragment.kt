@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import ro.bcsolutions.homemenu.R
 import ro.bcsolutions.homemenu.database.HomeMenuDatabase
 import ro.bcsolutions.homemenu.databinding.EditMenuFragmentBinding
@@ -20,6 +20,7 @@ class EditMenuFragment : Fragment() {
 
     private lateinit var binding: EditMenuFragmentBinding
 
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -30,14 +31,29 @@ class EditMenuFragment : Fragment() {
         val homeMenuItemDao = HomeMenuDatabase.getInstance(application).homeMenuItemDao
 
         editMenuViewModel = ViewModelProvider(this,EditMenuViewModelFactory(homeMenuItemDao)).get(EditMenuViewModel::class.java)
+
         binding = DataBindingUtil.inflate(inflater,R.layout.edit_menu_fragment, container, false)
         binding.editMenuViewModel = editMenuViewModel
-        binding.fabAddMenuItem.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_edit_menu_to_menu_item))
 
-        val adapter = MenuItemRecyclerViewAdapter()
+        val adapter = MenuItemRecyclerViewAdapter(MenuItemRecyclerViewAdapter.HomeMenuListType.EDIT,MenuItemRecyclerViewAdapter.MenuItemClickListener { menuItemId ->
+            editMenuViewModel.onMenuItemClicked(menuItemId)
+        })
+
         binding.editMenuItemsList.adapter = adapter
-        editMenuViewModel.menuItems.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+
+        editMenuViewModel.menuItems.observe(viewLifecycleOwner, Observer { menuItemList ->
+            adapter.submitList(menuItemList)
+        })
+
+        editMenuViewModel.navigateToMenuItemFragment.observe(viewLifecycleOwner, Observer {menuItemId ->
+            menuItemId?.let {
+                findNavController().navigate(
+                    EditMenuFragmentDirections.actionNavEditMenuToMenuItem(
+                        menuItemId
+                    )
+                )
+                editMenuViewModel.onMenuItemFragmentNavigated()
+            }
         })
 
         return binding.root
