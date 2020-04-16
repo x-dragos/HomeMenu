@@ -77,7 +77,7 @@
             android:layout_width="97dp"
             android:layout_height="86dp"
             android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/view"
+            android:contentDescription="@string/content_description_calendar_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_calendar_icon" />
@@ -92,15 +92,15 @@
 
         <TextView
             android:id="@+id/weekday_text"
-            app:weekdayString="@{menuItem}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/calendar_icon"
             app:layout_constraintEnd_toEndOf="@+id/calendar_icon"
             app:layout_constraintStart_toStartOf="@+id/calendar_icon"
             app:layout_constraintTop_toTopOf="@+id/calendar_icon"
+            app:weekdayString="@{menuItem}"
             tools:text="Mon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

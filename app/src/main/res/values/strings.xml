@@ -18,4 +18,5 @@
     <string name="text_lunch_title">Pranz:</string>
     <string name="text_dinner_title">Cina:</string>
     <string name="button_edit_text">edit</string>
+    <string name="content_description_calendar_icon">Calendar icon</string>
 </resources>
